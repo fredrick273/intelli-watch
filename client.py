@@ -1,158 +1,164 @@
+import os
+import psutil
 import windows_tools.antivirus
 import windows_tools.windows_firewall
-import psutil
-import requests
-import threading
-import time
-import subprocess
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
+import time
+import socket
+import subprocess
 
-def is_antivirus_enabled():
-    antivirus_result = windows_tools.antivirus.get_installed_antivirus_software()
-    return bool(antivirus_result)
-# Initialize the status of antivirus and firewall
-antivirus_disabled =not is_antivirus_enabled()
-firewall_disabled = not windows_tools.windows_firewall.is_firewall_active()
+def check_security():
+    results = {}
+    
+    # Check antivirus status
+    antivirus_enabled = is_antivirus_enabled()
+    results['AntivirusEnabled'] = antivirus_enabled
 
-webhook_url = 'DISCORD_WEBHOOK_LINK_HERE'
-cpu_threshold = 90
-network_threshold = 1024 * 1024 * 10
+    # Check Windows Firewall status
+    firewall_enabled = is_firewall_enabled()
+    results['FirewallEnabled'] = firewall_enabled
 
-connected_usb_devices = []
+    # Check for removable USB devices
+    usb_devices = get_usb_devices()
+    results['USBDevices'] = usb_devices
 
-connected_usb_devices = []
+    # Check network connections
+    network_connections = get_network_stuff()
+    results['NetworkConnections'] = network_connections
 
-def monitor_usb_devices():
-    while True:
-        # Get a list of currently connected USB devices
-        current_usb_devices = []
-        for device in psutil.disk_partitions():
-            if 'removable' in device.opts:
-                current_usb_devices.append(device.device)
+    # Check CPU and RAM usage
+    cpu_percent = get_cpu_percent()
+    results['CPUPercent'] = cpu_percent
+    ram_percent = get_ram_percent()
+    results['RAMPercent'] = ram_percent
 
-        # Check for newly connected USB devices
-        new_devices = set(current_usb_devices) - set(connected_usb_devices)
-        if new_devices:
-            for device in new_devices:
-                message = f"USB device connected: {device}"
-                send_discord_alert(message)
+    # Check recently modified files
+    recent_files = get_recently_modified_files()
+    results['RecentlyModifiedFiles'] = recent_files
 
-        # Check for disconnected USB devices
-        disconnected_devices = set(connected_usb_devices) - set(current_usb_devices)
-        if disconnected_devices:
-            for device in disconnected_devices:
-                message = f"USB device disconnected: {device}"
-                send_discord_alert(message)
+    running_processes = get_running_processes()
+    results['RunningProcesses'] = running_processes
 
-        # Update the list of connected USB devices
-        connected_usb_devices[:] = current_usb_devices
+    # Check installed software
+    installed_software = get_installed_software()
+    results['InstalledSoftware'] = installed_software
 
-        time.sleep(60)  
+    # Check open ports
+    # open_ports = get_open_ports()
+    # results['OpenPorts'] = open_ports
+
+    return results
 
 class FileChangeHandler(FileSystemEventHandler):
+    def __init__(self):
+        self.modified_files = []  # Initialize an empty list to store modified file names
+
     def on_modified(self, event):
         if event.is_directory:
             return
-        message = f"File modified: {event.src_path}"
-        send_discord_alert(message)
+        self.modified_files.append(event.src_path)  # Append the modified file name to the list
 
-def send_discord_alert(message):
-    payload = {'content': message}
-    response = requests.post(webhook_url, json=payload)
-    if response.status_code == 204:
-        print("Alert sent successfully to Discord!")
-    else:
-        print("Failed to send alert to Discord. Status code:", response.status_code)
-
-def monitor_network():
-    while True:
-        network_info = psutil.net_io_counters()
-        sent_speed = network_info.bytes_sent
-        recv_speed = network_info.bytes_recv
-
-        if sent_speed > network_threshold or recv_speed > network_threshold:
-            message = f"Abnormal network traffic detected: Sent={sent_speed} B, Recv={recv_speed} B"
-            send_discord_alert(message)
-
-        time.sleep(5)
-
-def monitor_and_send_security_events():
-    global antivirus_disabled, firewall_disabled
-    while True:
-        # Check for security events in Security Event Log
-        cmd = 'powershell Get-WinEvent -LogName Security | Where-Object {$_.Id -eq 4625}'
-        event_output = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
-        output, error = event_output.communicate()
-
-        if "EventId : 4625" in output.decode('utf-8'):
-            message = "Authentication failure detected"
-            send_discord_alert(message)
-
-        # Check if antivirus is disabled
-        if not antivirus_disabled:
-            antivirus_result = is_antivirus_enabled()
-            print(antivirus_result)
-            if not (antivirus_result):
-                message = "Antivirus is turned off!"
-                send_discord_alert(message)
-                antivirus_disabled = True
-            else:
-                message = "Antivirus is turned back on!"
-                send_discord_alert(message)
-                antivirus_disabled = False
-
-        if not firewall_disabled:
-            firewall_status = windows_tools.windows_firewall.is_firewall_active()
-            if not firewall_status:
-                message = "Firewall is turned off!"
-                send_discord_alert(message)
-                firewall_disabled = True
-            else:
-                message = "Firewall is turned back on!"
-                send_discord_alert(message)
-                firewall_disabled = False
-
-        time.sleep(60)
-
-
-def monitor_cpu_usage():
-    while True:
-        cpu_percent = psutil.cpu_percent(interval=5)
-        if cpu_percent > cpu_threshold:
-            message = f"High CPU usage detected: {cpu_percent}%"
-            send_discord_alert(message)
-        time.sleep(60)
-
-if __name__ == "__main__":
-    print("Monitoring for security events...")
-
-    network_thread = threading.Thread(target=monitor_network)
-    network_thread.start()
-
-    auth_failure_thread = threading.Thread(target=monitor_and_send_security_events)
-    auth_failure_thread.start()
-
-    cpu_usage_thread = threading.Thread(target=monitor_cpu_usage)
-    cpu_usage_thread.start()
-
+def get_recently_modified_files():
+    print("Running modified files")
+    handler = FileChangeHandler()
+    path_to_watch = 'C:\\Users\\Sam\\Desktop'
     file_observer = Observer()
-    # Replace 'C:\\path\\to\\monitor' with the directory path you want to observe on Windows.
-    file_observer.schedule(FileChangeHandler(), path='PATH')
+    file_observer.schedule(handler, path=path_to_watch)
     file_observer.start()
-
-    usb_device_thread = threading.Thread(target=monitor_usb_devices)
-    usb_device_thread.start()
-
-    try:
-        while True:
-            time.sleep(1)
-    except KeyboardInterrupt:
-        pass
-
-    network_thread.join()
-    auth_failure_thread.join()
-    cpu_usage_thread.join()
+    time.sleep(5)  # Wait for 60 seconds to collect modified files
     file_observer.stop()
     file_observer.join()
-    usb_device_thread.join()
+    print("Finished modified files")
+    return handler.modified_files
+
+
+# def get_open_ports():
+#     print("Running open ports")
+#     open_ports = []
+#     for port in range(1, 1025):  # Check common ports
+#         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#         sock.settimeout(1)
+#         result = sock.connect_ex(('localhost', port))
+#         if result == 0:
+#             open_ports.append(port)
+#         sock.close()
+#     print("Closed open ports")
+#     return open_ports
+
+def get_running_processes():
+    print("Running open process")
+    process_list = []
+    for process in psutil.process_iter(attrs=['pid', 'name']):
+        process_info = {
+            'pid': process.info['pid'],
+            'name': process.info['name']
+        }
+        process_list.append(process_info)
+    print("Closed open process")
+    return process_list
+
+def get_installed_software():
+    print("Running installed process")
+    installed_software = []
+    try:
+        result = subprocess.check_output(["wmic", "product", "get", "name"]).decode("utf-8")
+        software_list = result.strip().split('\n')[1:]
+        for software in software_list:
+            installed_software.append(software.strip())
+    except subprocess.CalledProcessError:
+        pass
+    print("Closed installed process")
+    return installed_software
+
+def is_antivirus_enabled():
+    print("Running Antivius")
+    result = windows_tools.antivirus.get_installed_antivirus_software()
+    for i in result:
+         if i['enabled'] == True:
+              return True
+    print("Closed Antivius")
+    return False
+
+def is_firewall_enabled():
+    print("Closed Antivius")
+    return windows_tools.windows_firewall.is_firewall_active()
+
+def get_usb_devices():
+    print("Running usb")
+    current_usb_devices = []
+    for device in psutil.disk_partitions():
+        if 'removable' in device.opts:
+            current_usb_devices.append(device.device)
+    print("Closed Usb")
+    return current_usb_devices
+
+def get_network_stuff():
+    print("Running network")
+    connections = psutil.net_connections(kind='inet')
+    connection_list = []
+    for conn in connections[:10]:
+        local_address = f"{conn.laddr.ip}:{conn.laddr.port}"
+        connection_info = {
+            "local_address": local_address,
+            "status": conn.status
+        }
+        if conn.raddr:
+            remote_address = f"{conn.raddr.ip}:{conn.raddr.port}"
+            connection_info["remote_address"] = remote_address
+        connection_list.append(connection_info)
+    print("Closed network")
+    return connection_list
+
+def get_cpu_percent():
+    return psutil.cpu_percent(interval=5)
+
+def get_ram_percent():
+    return psutil.virtual_memory().percent
+
+if __name__ == "__main__":
+    security_results = check_security()
+    print("Security Check Results:")
+    for key, value in security_results.items():
+        print(f"{key}: {value}")
+
