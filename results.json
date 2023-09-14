@@ -1,0 +1,1069 @@
+{
+      "AntivirusEnabled": true,
+      "FirewallEnabled": true,
+      "USBDevices": [],
+      "NetworkConnections": [
+            {
+                  "local_address": "fe80::69e:1fbe:1472:27f:1900",
+                  "status": "NONE"
+            },
+            {
+                  "local_address": "10.3.32.229:48802",
+                  "status": "TIME_WAIT",
+                  "remote_address": "172.217.13.3:443"
+            },
+            {
+                  "local_address": "0.0.0.0:49668",
+                  "status": "LISTEN"
+            },
+            {
+                  "local_address": "0.0.0.0:5353",
+                  "status": "NONE"
+            },
+            {
+                  "local_address": "127.0.0.1:48539",
+                  "status": "ESTABLISHED",
+                  "remote_address": "127.0.0.1:48538"
+            },
+            {
+                  "local_address": "127.0.0.1:48536",
+                  "status": "ESTABLISHED",
+                  "remote_address": "127.0.0.1:48537"
+            },
+            {
+                  "local_address": "127.0.0.1:48529",
+                  "status": "LISTEN"
+            },
+            {
+                  "local_address": "10.3.32.229:48621",
+                  "status": "ESTABLISHED",
+                  "remote_address": "142.251.175.188:5228"
+            },
+            {
+                  "local_address": "10.3.32.229:48811",
+                  "status": "SYN_SENT",
+                  "remote_address": "10.3.33.211:7680"
+            },
+            {
+                  "local_address": "10.3.32.229:48703",
+                  "status": "ESTABLISHED",
+                  "remote_address": "20.24.121.134:443"
+            }
+      ],
+      "CPUPercent": 1.7,
+      "RAMPercent": 88.0,
+      "RecentlyModifiedFiles": [],
+      "RunningProcesses": [
+            {
+                  "pid": 0,
+                  "name": "System Idle Process"
+            },
+            {
+                  "pid": 4,
+                  "name": "System"
+            },
+            {
+                  "pid": 108,
+                  "name": ""
+            },
+            {
+                  "pid": 156,
+                  "name": "Registry"
+            },
+            {
+                  "pid": 536,
+                  "name": "smss.exe"
+            },
+            {
+                  "pid": 712,
+                  "name": "wininit.exe"
+            },
+            {
+                  "pid": 728,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 900,
+                  "name": "GoogleCrashHandler.exe"
+            },
+            {
+                  "pid": 924,
+                  "name": "csrss.exe"
+            },
+            {
+                  "pid": 1112,
+                  "name": "services.exe"
+            },
+            {
+                  "pid": 1132,
+                  "name": "LsaIso.exe"
+            },
+            {
+                  "pid": 1148,
+                  "name": "lsass.exe"
+            },
+            {
+                  "pid": 1228,
+                  "name": "audiodg.exe"
+            },
+            {
+                  "pid": 1272,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 1300,
+                  "name": "WUDFHost.exe"
+            },
+            {
+                  "pid": 1316,
+                  "name": "fontdrvhost.exe"
+            },
+            {
+                  "pid": 1420,
+                  "name": "conhost.exe"
+            },
+            {
+                  "pid": 1448,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 1504,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 1512,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 1568,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 1660,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 1676,
+                  "name": "GoogleCrashHandler64.exe"
+            },
+            {
+                  "pid": 1696,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 1704,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 1720,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 1816,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 1824,
+                  "name": "TextInputHost.exe"
+            },
+            {
+                  "pid": 1828,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 1872,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 1984,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 1996,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 2040,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 2052,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 2084,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 2092,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 2100,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 2172,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 2228,
+                  "name": "RuntimeBroker.exe"
+            },
+            {
+                  "pid": 2440,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 2600,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 2620,
+                  "name": "postgres.exe"
+            },
+            {
+                  "pid": 2624,
+                  "name": "DiagsCap.exe"
+            },
+            {
+                  "pid": 2632,
+                  "name": "AppHelperCap.exe"
+            },
+            {
+                  "pid": 2640,
+                  "name": "NetworkCap.exe"
+            },
+            {
+                  "pid": 2648,
+                  "name": "NisSrv.exe"
+            },
+            {
+                  "pid": 2660,
+                  "name": "OmenCap.exe"
+            },
+            {
+                  "pid": 2672,
+                  "name": "dllhost.exe"
+            },
+            {
+                  "pid": 2676,
+                  "name": "SysInfoCap.exe"
+            },
+            {
+                  "pid": 2688,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 2792,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 2804,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 2816,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 2832,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 2844,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 2956,
+                  "name": "TouchpointAnalyticsClientService.exe"
+            },
+            {
+                  "pid": 3060,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 3104,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 3148,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 3180,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 3212,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 3284,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 3476,
+                  "name": "unsecapp.exe"
+            },
+            {
+                  "pid": 3552,
+                  "name": "WmiPrvSE.exe"
+            },
+            {
+                  "pid": 3576,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 3652,
+                  "name": "Widgets.exe"
+            },
+            {
+                  "pid": 3672,
+                  "name": "NVDisplay.Container.exe"
+            },
+            {
+                  "pid": 3744,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 3800,
+                  "name": "NVDisplay.Container.exe"
+            },
+            {
+                  "pid": 3828,
+                  "name": "SgrmBroker.exe"
+            },
+            {
+                  "pid": 3864,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 3872,
+                  "name": "atiesrxx.exe"
+            },
+            {
+                  "pid": 3968,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 3976,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 3984,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 4060,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 4076,
+                  "name": "MemCompression"
+            },
+            {
+                  "pid": 4132,
+                  "name": "taskhostw.exe"
+            },
+            {
+                  "pid": 4164,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 4224,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 4288,
+                  "name": "LocationNotificationWindows.exe"
+            },
+            {
+                  "pid": 4312,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 4392,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 4508,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 4548,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 4572,
+                  "name": "CodeSetup-stable-abd2f3db4bdb28f9e95536dfa84d8479f1eb312d.tmp"
+            },
+            {
+                  "pid": 4576,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 4720,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 4728,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 4756,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 4876,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 4972,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 5000,
+                  "name": "smartscreen.exe"
+            },
+            {
+                  "pid": 5056,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 5132,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 5140,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 5184,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 5252,
+                  "name": "spoolsv.exe"
+            },
+            {
+                  "pid": 5272,
+                  "name": "postgres.exe"
+            },
+            {
+                  "pid": 5320,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 5336,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 5544,
+                  "name": "postgres.exe"
+            },
+            {
+                  "pid": 5640,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 5648,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 5676,
+                  "name": "AdskAccessServiceHost.exe"
+            },
+            {
+                  "pid": 5684,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 5692,
+                  "name": "OfficeClickToRun.exe"
+            },
+            {
+                  "pid": 5700,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 5736,
+                  "name": "ETDService.exe"
+            },
+            {
+                  "pid": 5748,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 5804,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 5844,
+                  "name": "RtkAudUService64.exe"
+            },
+            {
+                  "pid": 5852,
+                  "name": "RtkBtManServ.exe"
+            },
+            {
+                  "pid": 5860,
+                  "name": "SECOMN64.exe"
+            },
+            {
+                  "pid": 5868,
+                  "name": "sqlwriter.exe"
+            },
+            {
+                  "pid": 5884,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 5924,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 5936,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 5956,
+                  "name": "MsMpEng.exe"
+            },
+            {
+                  "pid": 5996,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 6000,
+                  "name": "CodeSetup-stable-abd2f3db4bdb28f9e95536dfa84d8479f1eb312d.exe"
+            },
+            {
+                  "pid": 6008,
+                  "name": "pg_ctl.exe"
+            },
+            {
+                  "pid": 6184,
+                  "name": "Code.exe"
+            },
+            {
+                  "pid": 6220,
+                  "name": "wslservice.exe"
+            },
+            {
+                  "pid": 6532,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 6704,
+                  "name": "AggregatorHost.exe"
+            },
+            {
+                  "pid": 6776,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 6812,
+                  "name": "SearchIndexer.exe"
+            },
+            {
+                  "pid": 6848,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 6920,
+                  "name": "IntelUnison.exe"
+            },
+            {
+                  "pid": 6944,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 6972,
+                  "name": "postgres.exe"
+            },
+            {
+                  "pid": 6980,
+                  "name": "conhost.exe"
+            },
+            {
+                  "pid": 6984,
+                  "name": "HPCommRecovery.exe"
+            },
+            {
+                  "pid": 7004,
+                  "name": "postgres.exe"
+            },
+            {
+                  "pid": 7036,
+                  "name": "postgres.exe"
+            },
+            {
+                  "pid": 7164,
+                  "name": "postgres.exe"
+            },
+            {
+                  "pid": 7244,
+                  "name": "AMDRSServ.exe"
+            },
+            {
+                  "pid": 7560,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 7644,
+                  "name": "WmiPrvSE.exe"
+            },
+            {
+                  "pid": 7792,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 8000,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 8116,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 8188,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 8348,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 8464,
+                  "name": "Discord.exe"
+            },
+            {
+                  "pid": 8552,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 8700,
+                  "name": "Discord.exe"
+            },
+            {
+                  "pid": 8820,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 9424,
+                  "name": "powershell.exe"
+            },
+            {
+                  "pid": 9888,
+                  "name": "SystemSettingsBroker.exe"
+            },
+            {
+                  "pid": 9984,
+                  "name": "backgroundTaskHost.exe"
+            },
+            {
+                  "pid": 10128,
+                  "name": "python.exe"
+            },
+            {
+                  "pid": 10156,
+                  "name": "MoUsoCoreWorker.exe"
+            },
+            {
+                  "pid": 10432,
+                  "name": "Code.exe"
+            },
+            {
+                  "pid": 10448,
+                  "name": "dllhost.exe"
+            },
+            {
+                  "pid": 10504,
+                  "name": "WhatsApp.exe"
+            },
+            {
+                  "pid": 10688,
+                  "name": "Code.exe"
+            },
+            {
+                  "pid": 10704,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 10732,
+                  "name": "Code.exe"
+            },
+            {
+                  "pid": 10972,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 11396,
+                  "name": "sihost.exe"
+            },
+            {
+                  "pid": 11424,
+                  "name": "conhost.exe"
+            },
+            {
+                  "pid": 11464,
+                  "name": "RuntimeBroker.exe"
+            },
+            {
+                  "pid": 11536,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 11596,
+                  "name": "SearchHost.exe"
+            },
+            {
+                  "pid": 11672,
+                  "name": "Code.exe"
+            },
+            {
+                  "pid": 11708,
+                  "name": "Discord.exe"
+            },
+            {
+                  "pid": 11772,
+                  "name": "backgroundTaskHost.exe"
+            },
+            {
+                  "pid": 11792,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 11800,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 12104,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 12292,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 12552,
+                  "name": "ctfmon.exe"
+            },
+            {
+                  "pid": 12604,
+                  "name": "RuntimeBroker.exe"
+            },
+            {
+                  "pid": 12860,
+                  "name": "TrustedInstaller.exe"
+            },
+            {
+                  "pid": 12900,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 13184,
+                  "name": "csrss.exe"
+            },
+            {
+                  "pid": 13272,
+                  "name": "Discord.exe"
+            },
+            {
+                  "pid": 13484,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 13592,
+                  "name": "ETDCtrl.exe"
+            },
+            {
+                  "pid": 13816,
+                  "name": "dwm.exe"
+            },
+            {
+                  "pid": 13856,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 14036,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 14088,
+                  "name": "SecurityHealthService.exe"
+            },
+            {
+                  "pid": 14104,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 14192,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 14292,
+                  "name": "ApplicationFrameHost.exe"
+            },
+            {
+                  "pid": 14368,
+                  "name": "RuntimeBroker.exe"
+            },
+            {
+                  "pid": 14552,
+                  "name": "winlogon.exe"
+            },
+            {
+                  "pid": 14588,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 14684,
+                  "name": "atieclxx.exe"
+            },
+            {
+                  "pid": 14764,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 14800,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 14852,
+                  "name": "RadeonSettings.exe"
+            },
+            {
+                  "pid": 14964,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 15292,
+                  "name": "Code.exe"
+            },
+            {
+                  "pid": 15424,
+                  "name": "IntelUnisonClient.exe"
+            },
+            {
+                  "pid": 15796,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 16000,
+                  "name": "python.exe"
+            },
+            {
+                  "pid": 16144,
+                  "name": "Discord.exe"
+            },
+            {
+                  "pid": 16204,
+                  "name": "CastSrv.exe"
+            },
+            {
+                  "pid": 16260,
+                  "name": "explorer.exe"
+            },
+            {
+                  "pid": 16584,
+                  "name": "HPAudioSwitch.exe"
+            },
+            {
+                  "pid": 16612,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 16672,
+                  "name": "Code.exe"
+            },
+            {
+                  "pid": 16744,
+                  "name": "Code.exe"
+            },
+            {
+                  "pid": 16956,
+                  "name": "fontdrvhost.exe"
+            },
+            {
+                  "pid": 17260,
+                  "name": "MoNotificationUx.exe"
+            },
+            {
+                  "pid": 17296,
+                  "name": "TiWorker.exe"
+            },
+            {
+                  "pid": 17312,
+                  "name": "SystemSettings.exe"
+            },
+            {
+                  "pid": 17592,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 17608,
+                  "name": "Code.exe"
+            },
+            {
+                  "pid": 17684,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 17732,
+                  "name": "vmcompute.exe"
+            },
+            {
+                  "pid": 18048,
+                  "name": "Code.exe"
+            },
+            {
+                  "pid": 18092,
+                  "name": "RuntimeBroker.exe"
+            },
+            {
+                  "pid": 18128,
+                  "name": "conhost.exe"
+            },
+            {
+                  "pid": 18224,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 18292,
+                  "name": "WidgetService.exe"
+            },
+            {
+                  "pid": 18492,
+                  "name": "Code.exe"
+            },
+            {
+                  "pid": 18772,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 19116,
+                  "name": "WmiPrvSE.exe"
+            },
+            {
+                  "pid": 19188,
+                  "name": "Discord.exe"
+            },
+            {
+                  "pid": 19252,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 19304,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 19312,
+                  "name": "ShellExperienceHost.exe"
+            },
+            {
+                  "pid": 19392,
+                  "name": "powershell.exe"
+            },
+            {
+                  "pid": 19468,
+                  "name": "UserOOBEBroker.exe"
+            },
+            {
+                  "pid": 19488,
+                  "name": "chrome.exe"
+            },
+            {
+                  "pid": 19672,
+                  "name": "Code.exe"
+            },
+            {
+                  "pid": 19720,
+                  "name": "svchost.exe"
+            },
+            {
+                  "pid": 19912,
+                  "name": "StartMenuExperienceHost.exe"
+            }
+      ],
+      "InstalledSoftware": [
+            "Python 3.11.1 Utility Scripts (64-bit)",
+            "Python 3.11.1 Standard Library (64-bit)",
+            "Python 3.11.1 Core Interpreter (64-bit)",
+            "Python 3.11.1 Test Suite (64-bit)",
+            "PuTTY release 0.78 (64-bit)",
+            "Python 3.11.1 Development Libraries (64-bit)",
+            "Python 3.11.1 Executables (64-bit)",
+            "Python 3.11.1 Documentation (64-bit)",
+            "Python 3.11.1 pip Bootstrap (64-bit)",
+            "Python 3.11.1 Add to Path (64-bit)",
+            "Python 3.11.1 Tcl/Tk Support (64-bit)",
+            "Office 16 Click-to-Run Extensibility Component",
+            "Office 16 Click-to-Run Localization Component",
+            "Office 16 Click-to-Run Licensing Component",
+            "Microsoft SQL Server 2019 T-SQL Language Service",
+            "Microsoft Windows Desktop Runtime - 7.0.0 (x64)",
+            "Microsoft Visual C++ 2022 X64 Additional Runtime - 14.36.32532",
+            "SQL Server 2019 XEvent",
+            "Microsoft .NET Host - 6.0.8 (x64)",
+            "vs_CoreEditorFonts",
+            "SQL Server 2019 Connection Info",
+            "SQL Server 2019 DMF",
+            "Microsoft .NET Host - 7.0.4 (x64)",
+            "AMD Ryzen Master SDK Alpha",
+            "Epic Games Launcher Prerequisites (x64)",
+            "AMD WVR64",
+            "Microsoft SQL Server 2019 RsFx Driver",
+            "HP Audio Switch",
+            "Microsoft VSS Writer for SQL Server 2019",
+            "Java 8 Update 381",
+            "Java 8 Update 381 (64-bit)",
+            "Java SE Development Kit 8 Update 251 (64-bit)",
+            "SQL Server 2019 Connection Info",
+            "Microsoft .NET Host FX Resolver - 6.0.8 (x64)",
+            "Microsoft Visual C++ 2013 x64 Additional Runtime - 12.0.21005",
+            "Microsoft ODBC Driver 17 for SQL Server",
+            "Microsoft Visual C++ 2013 x64 Minimum Runtime - 12.0.21005",
+            "SQL Server 2019 Database Engine Shared",
+            "Microsoft SQL Server 2012 Native Client",
+            "SQL Server 2019 DMF",
+            "SQL Server 2019 Shared Management Objects Extensions",
+            "Microsoft Visual C++ 2012 x64 Additional Runtime - 11.0.61030",
+            "SQL Server 2019 SQL Diagnostics",
+            "Microsoft Update Health Tools",
+            "Microsoft ASP.NET Core 6.0.8 Shared Framework (x64)",
+            "SQL Server 2019 Shared Management Objects",
+            "",
+            "SQL Server 2019 Common Files",
+            "Microsoft Windows Desktop Runtime - 6.0.8 (x64)",
+            "Microsoft .NET Runtime - 7.0.0 (x64)",
+            "SQL Server 2019 Shared Management Objects Extensions",
+            "Microsoft OLE DB Driver for SQL Server",
+            "Epic Games Launcher",
+            "SQL Server 2019 Batch Parser",
+            "Microsoft Visual C++ 2022 X86 Additional Runtime - 14.36.32532",
+            "SQL Server 2019 Shared Management Objects",
+            "Microsoft Visual C++ 2012 x86 Additional Runtime - 11.0.61030",
+            "Microsoft Visual C++ 2010  x64 Redistributable - 10.0.30319",
+            "SQL Server 2019 Database Engine Services",
+            "Microsoft Visual C++ 2012 x64 Minimum Runtime - 11.0.61030",
+            "SQL Server 2019 Database Engine Shared",
+            "AMD Settings",
+            "Python Launcher",
+            "Microsoft Visual C++ 2012 x86 Minimum Runtime - 11.0.61030",
+            "SQL Server 2019 Common Files",
+            "Microsoft SQL Server 2019 Setup (English)",
+            "SQL Server 2019 XEvent",
+            "Microsoft Visual C++ 2022 X86 Minimum Runtime - 14.36.32532",
+            "SQL Server 2019 Database Engine Services",
+            "Node.js",
+            "Microsoft Visual C++ 2022 X64 Minimum Runtime - 14.36.32532",
+            "Epic Online Services",
+            "Java Auto Updater",
+            "Windows SDK AddOn",
+            "AMD Settings",
+            "Microsoft .NET Runtime - 6.0.8 (x64)",
+            "Microsoft .NET Host FX Resolver - 7.0.0 (x64)"
+      ]
+}

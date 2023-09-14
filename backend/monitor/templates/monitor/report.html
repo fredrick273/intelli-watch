@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>System Information</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>System Information</h1>
+    
+    <h2>Antivirus and Firewall Status</h2>
+    <table>
+        <tr>
+            <th>Antivirus Enabled</th>
+            <td>{{ antivirus }}</td>
+        </tr>
+        <tr>
+            <th>Firewall Enabled</th>
+            <td>{{ firewall }}</td>
+        </tr>
+    </table>
+
+    <h2>Network Connections</h2>
+    <table>
+        <tr>
+            <th>Local Address</th>
+            <th>Status</th>
+            <th>Remote Address</th>
+        </tr>
+        {% for i in network_connections %}
+        <tr> 
+            <td>{{ i.local_address }}</td>
+            <td>{{ i.status }}</td>
+            <td>{{ i.remote_address }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>CPU and RAM Usage</h2>
+    <table>
+        <tr>
+            <th>CPU Percent</th>
+            <td>{{ cpu_percent }}%</td>
+        </tr>
+        <tr>
+            <th>RAM Percent</th>
+            <td>{{ ram_percent }}%</td>
+        </tr>
+    </table>
+
+    <h2>Running Processes</h2>
+    <table>
+        <tr>
+            <th>PID</th>
+            <th>Name</th>
+        </tr>
+        {% for i in running_processes %}
+        <tr>
+            <td>{{ i.pid }}</td>
+            <td>{{ i.name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Installed Software</h2>
+    <table>
+        <tr>
+            <th>Date installed</th>
+            <th>Name</th>
+        </tr>
+        {% for i in installed_softwares %}
+        <tr>
+            <td>{{ i.InstallDate }}</td>
+            <td>{{ i.Name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Modified Files</h2>
+    <ul>
+        {% for i in modified_files %}
+        <li>{{i}}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Usb deviced</h2>
+    <ul>
+        {% for i in usb_devices %}
+        <li>{{i}}</li>
+        {% endfor %}
+    </ul>
+
+    <script>
+        let data = "{{ running_processes }}"
+        console.log(data);
+    </script>
+</body>
+</html>

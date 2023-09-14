@@ -102,17 +102,21 @@ def get_running_processes():
     return process_list
 
 def get_installed_software():
-    print("Running installed process")
-    installed_software = []
+    installed_software_with_date = []
     try:
-        result = subprocess.check_output(["wmic", "product", "get", "name"]).decode("utf-8")
-        software_list = result.strip().split("\n")[1:]
-        for software in software_list:
-            installed_software.append(software.strip())
+        result = subprocess.check_output(["wmic", "product", "get", "name,installdate"]).decode("utf-8")
+        lines = result.strip().split("\n")
+        header = [s.strip() for s in lines[0].split()]
+        for line in lines[1:]:
+            values = [s.strip() for s in line.split(None, len(header) - 1)]
+            if len(values) == len(header):
+                software_info = dict(zip(header, values))
+                installed_software_with_date.append(software_info)
     except subprocess.CalledProcessError:
         pass
     print("Closed installed process")
-    return installed_software
+    return installed_software_with_date
+    
 
 def is_antivirus_enabled():
     print("Running Antivius")
@@ -149,6 +153,8 @@ def get_network_stuff():
         if conn.raddr:
             remote_address = f"{conn.raddr.ip}:{conn.raddr.port}"
             connection_info["remote_address"] = remote_address
+        else:
+            connection_info["remote_address"] = ""
         connection_list.append(connection_info)
     print("Closed network")
     return connection_list
@@ -167,7 +173,7 @@ if __name__ == "__main__":
     # out_file = open("results.json", "w")
     # json.dump(security_results,out_file, indent = 6)
     # out_file.close()
-    response = requests.post("http://127.0.0.1:8000/send/", 
+    response = requests.post("http://127.0.0.1:8000/report/1/", 
     data=json.dumps(security_results),  # 
     headers={"Content-Type": "application/json"}, 
     )
