@@ -6,6 +6,7 @@ from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import time
 import socket
+import json
 import subprocess
 import requests
 import json
@@ -163,6 +164,9 @@ if __name__ == "__main__":
     print("Security Check Results:")
     # for key, value in security_results.items():
     #     print(f"{key}: {value}")
+    # out_file = open("results.json", "w")
+    # json.dump(security_results,out_file, indent = 6)
+    # out_file.close()
     response = requests.post("http://127.0.0.1:8000/send/", 
     data=json.dumps(security_results),  # 
     headers={"Content-Type": "application/json"}, 
