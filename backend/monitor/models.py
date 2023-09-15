@@ -1,9 +1,6 @@
 from django.db import models
 from users.models import UserData
 
-# Create your models here.
-class Temp(models.Model):
-    data = models.TextField()
 
 class System(models.Model):
     name = models.CharField(max_length=200)

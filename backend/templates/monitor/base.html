@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Dashboard</title>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> 
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">   
+
+</head>
+<body>
+    <div class="grid-container">
+        <header class="header">
+            <div class="menu-icon" onclick="openSidebar()">
+                <span class="material-icons-outlined">menu</span>
+            </div>
+            <div class="header-left">
+                <span class="material-icons-outlined">search</span>
+            </div>
+            <div class="header-right">
+                <button class="btn btn-outline-secondary" id="myBtn">New System</button>
+                <div id="myModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <form method="post">
+                            <div class="text-area">
+                                <input type="text" required >
+                                <span></span>
+                                <label>System Name</label>
+                            </div>
+                            <input type="submit" value="Submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <aside id="sidebar">
+            <div class="sidebar-title">
+                <div class="sidebar-brand">
+                    <span class="material-icons-outlined">inventory</span>Intelli Watch
+                </div>
+                <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+            </div>
+
+            <!--Sidebar Items-->
+            <ul class="sidebar-list">
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">dashboard</span> Dashboard
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">inventory_2</span> Threats
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">security</span> Protection
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">add_shopping_cart</span> Purchase Extension
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">info</span> Your Package
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">bug_report</span> Reports
+                </li>
+                <li class="sidebar-list-item">
+                    <span class="material-icons-outlined">settings</span> Settings
+                </li>
+            </ul>
+        </aside>
+
+        {% block content %}
+        
+        {% endblock %}
+        <script>
+
+        // Sidebar Toggle 
+
+var sidebarOpen = false;
+
+var sidebar = document.getElementById("sidebar");
+
+function openSidebar() {
+    if (!sidebarOpen) {
+        sidebar.classList.add("sidebar-responsive");
+        sidebarOpen = true;
+    }
+}
+
+function closeSidebar() {
+    if (sidebarOpen) {
+        sidebar.classList.remove("sidebar-responsive");
+        sidebarOpen=false;
+    }
+}    
+
+var modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+</body>
+</html>

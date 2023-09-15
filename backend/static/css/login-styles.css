@@ -1,0 +1,154 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #21232d;
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background: white;
+    border-radius: 10px;
+}
+
+.center h1{
+    text-align: center;
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid silver;
+}
+
+.center form {
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+form .text-area {
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+.text-area input {
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+.text-area label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    color: #adadad;
+    transform: translateY(-50%);
+    font-size: 16px;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.text-area span::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: #2691d9;
+    transition: 0.5s;
+}
+
+.text-area input:focus ~ label,
+.text-area input:valid ~ label {
+    top: -5px;
+    color: #2691d9;
+}
+
+.text-area input:focus ~ span::before,
+.text-area input:valid ~ span::before {
+    width: 100%;
+}
+
+.pass {
+    margin: -5px 0 20px 5px;
+    color: #a6a6a6;
+    cursor: pointer;
+}
+
+.pass:hover {
+    text-decoration: underline;
+}
+
+input[type='submit']{
+    width: 100%;
+    height: 50px;
+    border: 1px solid;
+    background: #2691d9;
+    border-radius: 25px;
+    font-size: 18px;
+    color: #e9f4fb;
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+}
+
+input[type='submit']:hover {
+    border-color: #2691d9;
+    transition: 0.5s;
+}
+
+.signup-link {
+    margin: 30px 0;
+    text-align: center;
+    font-size: 16px;
+    color: #666666;
+}
+
+.signup-link a {
+    color: #2691d9;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+} 
+
+
+.material-icons-outlined {
+    vertical-align: middle;
+    line-height: 1px;
+}
+
+/* Default Colors */
+.text-primary {
+    color: #666666;
+}
+
+.text-blue {
+    color: #246dec;
+}
+
+.text-red {
+    color: #cc3c43;
+}
+
+.text-green {
+    color: #367952;
+}
+
+.text-orange {
+    color: #f5b74f;
+}
+
+.font-weight-bold {
+    font-weight: 600;
+}

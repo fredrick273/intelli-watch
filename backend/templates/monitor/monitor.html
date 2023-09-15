@@ -1,0 +1,232 @@
+{% extends 'monitor/base.html' %}
+
+        {% block content %}
+        <!-- MAIN -->
+        <main class="main-container">
+            <div class="main-title">
+                <p class="font-weight-bold">DASHBOARD</p>
+                <p class="subtitle">Report Time: {{ report_time }}</p>
+            </div>
+
+
+
+            <!-- CARDS -->
+            <div class="main-cards">
+
+                <div class="card">
+                    <div class="card-inner">
+                        <p class="primary-text">Antivirus Enabled</p>
+                        <span class="material-icons-outlined text-blue">security</span>
+                    </div>
+                    <span class="primary-text font-weight-bold">{{ antivirus }}</span>
+                </div>
+
+                <div class="card">
+                    <div class="card-inner">
+                        <p class="primary-text">Firewall Enabled</p>
+                        <span class="material-icons-outlined text-orange">local_fire_department</span>
+                    </div>
+                    <span class="primary-text font-weight-bold text-orange">{{ firewall }}</span>
+                </div>
+
+                <div class="card">
+                    <div class="card-inner">
+                        <p class="primary-text">CPU Utilization</p>
+                        <span class="material-icons-outlined text-green">memory</span>
+                    </div>
+                    <span class="primary-text font-weight-bold">{{ cpu_percent }}</span>
+                </div>
+
+                <div class="card">
+                    <div class="card-inner">
+                        <p class="primary-text">RAM Utilization</p>
+                        <span class="material-icons-outlined text-red">storage</span>
+                    </div>
+                    <span class="primary-text font-weight-bold">{{ ram_percent }}</span>
+                </div>
+            </div>
+
+            <div class="charts">
+                <div class="charts-card">
+                    <p class="chart-title">Running Processes</p>
+                    <table class="table table-light table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    PID
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           
+                                {% for i in running_processes %}
+                                <tr>
+                                    <td>{{ i.pid }}</td>
+                                    <td>{{ i.name }}</td>
+                                </tr>
+                                {% endfor %}
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="charts-card">
+                    <p class="chart-title">CPU & RAM Usage</p>
+                    <div id="area-chart"></div>
+                </div>
+            </div>
+            <div class="charts">
+                <div class="charts-card">
+                    <p class="chart-title">Installed Software</p>
+                    <table class="table table-light table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    PID
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in installed_softwares %}
+                        <tr>
+                            <td>{{ i.InstallDate }}</td>
+                            <td>{{ i.Name }}</td>
+                        </tr>
+                        {% endfor %}
+                           
+                        </tbody>
+                    </table>
+                </div>
+                <div class="charts-card">
+                    <p class="chart-title">Network Connections</p>
+                    <table class="table table-light table-striped table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Local address
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th>
+                                    remote address
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in network_connections %}
+                        <tr>
+                            <td>{{ i.local_address }}</td>
+                            <td>{{ i.status }}</td>
+                            <td>{{ i.remote_address }}</td>
+
+                        </tr>
+                        {% endfor %}
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="charts">
+                <div class="charts-card">
+                    <p class="chart-title">Modified Files</p>
+                    <ul class="list-group list-group-flush list-group-numbered">
+                        {% if modified_files %}
+                        {% for i in modified_files %}
+                        <li class="list-group-item">{{i}}</li>
+                        {% endfor %}
+                        {% else %}
+                        <li class="list-group-item">No files found</li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="charts-card">
+                    <p class="chart-title">USB Devices</p>
+                    <ul class="list-group list-group-flush list-group-numbered">
+                        {% if usb_devices %}
+                        {% for i in usb_devices %}
+                        <li class="list-group-item">{{i}}</li>
+                        {% endfor %}
+                        {% else %}
+                        <li class="list-group-item">No devices found</li>
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+
+    <!-- ApexCharts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.42.0/apexcharts.min.js"></script>
+    <!--Custom JS-->
+
+    <script>
+
+var cpu_data = JSON.parse("{{prev_cpu_data}}")
+var ram_data = JSON.parse("{{prev_ram_data}}")
+// var times = JSON.parse("{{prev_times}}")
+// Charts using ApexCharts
+
+// Area Chart
+
+var areaChartOptions = {
+  series: [{
+    name: 'CPU Utilization',
+    data: cpu_data
+  }, {
+    name: 'RAM Utilization',
+    data: ram_data
+  }],
+  chart: {
+    height: 350,
+    type: 'area',
+    toolbar: {
+      show: false,
+    },
+  },
+  colors: ["#4f35a1", "#246dec"],
+  dataLabels: {
+    enabled: false,
+  },
+  stroke: {
+    curve: 'smooth'
+  },
+  labels: ['Jan', 'Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+  markers: {
+    size: 0
+  },
+  yaxis: [
+    {
+      title: {
+        text: '',
+      },
+    },
+    {
+      opposite: true,
+      title: {
+        text: '',
+      },
+    },
+  ],
+  tooltip: {
+    shared: true,
+    intersect: false,
+  }
+};
+
+var areaChart = new ApexCharts(document.querySelector("#area-chart"), areaChartOptions);
+areaChart.render();
+
+
+    </script>
+    <!--Bootstrap JS-->
+    {% endblock %}
