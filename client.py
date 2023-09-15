@@ -83,7 +83,7 @@ class FileChangeHandler(FileSystemEventHandler):
 def get_recently_modified_files():
     print("Running modified files")
     handler = FileChangeHandler()
-    path_to_watch = "C:\\Users\\Sam\\Desktop"
+    path_to_watch = "C:\\"
     file_observer = Observer()
     file_observer.schedule(handler, path=path_to_watch)
     file_observer.start()
@@ -122,7 +122,7 @@ def get_running_processes():
 def get_installed_software():
     installed_software_with_date = []
     try:
-        result = subprocess.check_output(["wmic", "product", "get", "name,installdate"]).decode("utf-8")
+        result = subprocess.check_output(["wmic", "product", "get", "name,installdate"]).decode("utf-8", errors='ignore')
         lines = result.strip().split("\n")
         header = [s.strip() for s in lines[0].split()]
         for line in lines[1:]:

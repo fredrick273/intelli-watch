@@ -1,0 +1,50 @@
+{% extends 'monitor/base.html' %}
+
+        {% block content %}
+        <main class="main-container">
+
+            <div class="report-chart">
+                <div class="charts-card">
+                        <p class="chart-title">System: {{sys}} Id: {{id}}</p>
+                        <table class="table table-light table-striped table-hover table-bordered">
+                                <thead>
+                                        <tr>
+                                            <th>
+                                                Id
+                                            </th>
+                                            <th>
+                                                Report Time
+                                            </th>
+                                            <th>
+                                                Report
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in systemdatas %}
+                                        <tr>
+                                            <td>
+                                                {{i.id}}
+                                            </td>
+                                            <td>
+                                                {{i.reported_time}}
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-outline-secondary" onclick="redirect({{ i.id }})">Report</button>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+            
+                                    </tbody>
+
+                        </table>
+                </div>
+            </div>
+            </main>
+            <script>
+            function redirect(id) {
+                var url = "{% url 'historydata' 0 %}".replace('0', id);
+                location.href = url;
+        }
+    </script>
+{% endblock %}

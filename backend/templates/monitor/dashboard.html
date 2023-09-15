@@ -1,5 +1,79 @@
 {% extends 'monitor/base.html' %}
 
         {% block content %}
+                    <!-- CARDS -->
+                    <main class="main-container">
+                    <div class="main-cards">
+
+                        <div class="card">
+                            <div class="card-inner">
+                                <p class="primary-text">Total systems</p>
+                                <span class="material-icons-outlined text-blue">security</span>
+                            </div>
+                            <span class="primary-text font-weight-bold">{{total}}</span>
+                        </div>
         
+                        <div class="card">
+                            <div class="card-inner">
+                                <p class="primary-text">Total System Reports</p>
+                                <span class="material-icons-outlined text-orange">local_fire_department</span>
+                            </div>
+                            <span class="primary-text font-weight-bold text-orange">Something</span>
+                        </div>
+        
+                        <div class="card">
+                            <div class="card-inner">
+                                <p class="primary-text">CPU Utilization</p>
+                                <span class="material-icons-outlined text-green">memory</span>
+                            </div>
+                            <span class="primary-text font-weight-bold">Something</span>
+                        </div>
+        
+                        <div class="card">
+                            <div class="card-inner">
+                                <p class="primary-text">RAM Utilization</p>
+                                <span class="material-icons-outlined text-red">storage</span>
+                            </div>
+                            <span class="primary-text font-weight-bold">Something</span>
+                        </div>
+                    </div>
+
+                    <div class="report-chart">
+                        <div class="charts-card">
+                                <p class="chart-title">Linked System</p>
+                                <table class="table table-light table-striped table-hover table-bordered">
+                                        <thead>
+                                                <tr>
+                                                    <th>
+                                                        System Name
+                                                    </th>
+                                                    <th>
+                                                        Get Latest Report
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for i in systems %}
+                                                <tr>
+                                                    <td>
+                                                        {{i.name}}
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-outline-secondary" onclick="redirect({{ i.id }})">Report</button>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                    
+                                            </tbody>
+
+                                </table>
+                        </div>
+                    </div>
+                    </main>
+                <script>
+                        function redirect(id) {
+                                var url = "{% url 'system_report' 0 %}".replace('0', id);
+                                location.href = url;
+                        }
+                </script>
         {% endblock %}

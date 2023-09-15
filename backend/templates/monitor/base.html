@@ -32,13 +32,14 @@
                 <div id="myModal" class="modal">
                     <div class="modal-content">
                         <span class="close">&times;</span>
-                        <form method="post">
+                        <form action="{% url 'newsys' %}" method="post">
+                            {% csrf_token %}
                             <div class="text-area">
-                                <input type="text" required >
+                                <input type="text" name="name" required >
                                 <span></span>
                                 <label>System Name</label>
                             </div>
-                            <input type="submit" value="Submit">
+                            <input onclick="reload()" type="submit" value="Submit">
                         </form>
                     </div>
                 </div>
@@ -57,10 +58,10 @@
             <!--Sidebar Items-->
             <ul class="sidebar-list">
                 <li class="sidebar-list-item">
-                    <span class="material-icons-outlined">dashboard</span> Dashboard
+                    <span class="material-icons-outlined">dashboard</span> <a style="text-decoration: none;color:inherit;" href="{% url 'dashboard' %}"> Dashboard</a>
                 </li>
                 <li class="sidebar-list-item">
-                    <span class="material-icons-outlined">inventory_2</span> Threats
+                    <span class="material-icons-outlined">inventory_2</span><a style="text-decoration: none;color:inherit;" href="{% url 'multisystem' %}"> History </a>
                 </li>
                 <li class="sidebar-list-item">
                     <span class="material-icons-outlined">security</span> Protection
@@ -86,6 +87,9 @@
         <script>
 
         // Sidebar Toggle 
+function reload(){
+    sleep(2000).then(() => {window.reload() });
+}
 
 var sidebarOpen = false;
 
