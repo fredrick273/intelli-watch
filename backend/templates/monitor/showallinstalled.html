@@ -1,0 +1,43 @@
+{% extends 'monitor/base.html' %}
+
+        {% block content %}
+        <main class="main-container">
+
+            <div class="report-chart">
+                <div class="charts-card">
+                        <p class="chart-title">Installed Software</p>
+                        <table class="table table-light table-striped table-hover table-bordered">
+                                <thead>
+                                        <tr>
+                                            <th>
+                                                Date
+                                            </th>
+                                            <th>
+                                                Name
+                                            </th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbo<tbody>
+                                        {% for i in installed_softwares %}
+                                    <tr>
+                                        <td>
+                                            {{i.InstallDate}}
+                                        </td>
+                                        <td>
+                                            {{i.Name}}
+                                        </td>
+            
+                                    </tr>
+                                    {% endfor %}
+                                       
+                                    </tbody>
+            
+                                    </tbody>
+
+                        </table>
+                </div>
+            </div>
+            </main>
+            
+{% endblock %}

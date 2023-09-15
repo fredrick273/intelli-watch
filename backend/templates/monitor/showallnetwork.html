@@ -1,0 +1,43 @@
+{% extends 'monitor/base.html' %}
+
+        {% block content %}
+        <main class="main-container">
+
+            <div class="report-chart">
+                <div class="charts-card">
+                        <p class="chart-title">Running process</p>
+                        <table class="table table-light table-striped table-hover table-bordered">
+                                <thead>
+                                        <tr>
+                                            <th>
+                                                Local address
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+                                            <th>
+                                                remote address
+                                            </th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbo<tbody>
+                                        {% for i in network_connections %}
+                                    <tr>
+                                        <td>{{ i.local_address }}</td>
+                                        <td>{{ i.status }}</td>
+                                        <td>{{ i.remote_address }}</td>
+            
+                                    </tr>
+                                    {% endfor %}
+                                       
+                                    </tbody>
+            
+                                    </tbody>
+
+                        </table>
+                </div>
+            </div>
+            </main>
+            
+{% endblock %}

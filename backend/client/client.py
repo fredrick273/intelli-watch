@@ -167,7 +167,7 @@ def get_network_stuff():
     print("Running network")
     connections = psutil.net_connections(kind="inet")
     connection_list = []
-    for conn in connections[:10]:
+    for conn in connections:
         local_address = f"{conn.laddr.ip}:{conn.laddr.port}"
         connection_info = {
             "local_address": local_address,

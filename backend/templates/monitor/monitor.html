@@ -4,7 +4,7 @@
         <!-- MAIN -->
         <main class="main-container">
             <div class="main-title">
-                <p class="font-weight-bold">DASHBOARD</p>
+                <p class="font-weight-bold">Report</p>
                 <p class="subtitle">Report Time: {{ report_time }}</p>
             </div>
 
@@ -71,7 +71,7 @@
                             
                         </tbody>
                     </table>
-                    <button class="btn btn-outline-secondary">View All</button>
+                    <button onclick="redirectprocess({{id}})" class="btn btn-outline-secondary">View All</button>
                 </div>
 
                 <div class="charts-card">
@@ -103,7 +103,7 @@
                            
                         </tbody>
                     </table>
-                    <button class="btn btn-outline-secondary">View All</button>
+                    <button onclick="redirectinstalled({{id}})" class="btn btn-outline-secondary">View All</button>
                 </div>
                 <div class="charts-card">
                     <p class="chart-title">Network Connections</p>
@@ -133,7 +133,7 @@
                            
                         </tbody>
                     </table>
-                    <button class="btn btn-outline-secondary">View All</button>
+                    <button onclick="redirectnetwork({{id}})" class="btn btn-outline-secondary">View All</button>
                 </div>
             </div>
             <div class="charts">
@@ -172,6 +172,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/apexcharts/3.42.0/apexcharts.min.js"></script>
     <!--Custom JS-->
 
+    <script>
+        function redirectprocess(id) {
+            var url = "{% url 'all_process' 0 %}".replace('0', id);
+            location.href = url;
+    }
+    function redirectnetwork(id) {
+            var url = "{% url 'all_network' 0 %}".replace('0', id);
+            location.href = url;
+    }
+    function redirectinstalled(id) {
+            var url = "{% url 'all_installed' 0 %}".replace('0', id);
+            location.href = url;
+    }
+</script>
     <script>
 
 var cpu_data = JSON.parse("{{prev_cpu_data}}")
