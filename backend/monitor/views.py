@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import render,HttpResponse,redirect
 from django.http import JsonResponse,FileResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -6,7 +7,8 @@ from django.urls import reverse
 from .models import System,SystemDataInstance
 from django.contrib.auth.decorators import login_required
 import os
-from django.conf import settings
+from users.models import UserData
+
 
 # @csrf_exempt
 # def report(request,id):
@@ -106,7 +108,8 @@ def newsystem(request):
         user = request.user
         system = System(name=name,user=user)
         system.save()
-        base_file_path = os.path.join(settings.BASE_DIR,"client","client.py")
+        base_file_path = os.path.join(settings.BASE_DIR, "client", "client.py")
+
         with open(base_file_path, "r") as file:
             content = file.read()
         url = str(request.build_absolute_uri('/'))
@@ -224,7 +227,7 @@ def showallinstalled(request,id):
 
 
 @login_required
-def settings(request):
+def settingsview(request):
     if request.method == "POST":
         systems = System.objects.filter(user=request.user)
 
@@ -244,12 +247,25 @@ def settings(request):
         
         systems = System.objects.filter(user=request.user)
         context={
-            "systems":systems
+            "systems":systems,
+            "username": request.user.name
         }
         return render(request,"monitor/settings.html",context=context)
     else:
         systems = System.objects.filter(user=request.user)
         context={
-            "systems":systems
+            "systems":systems,
+            "username": request.user.name
         }
         return render(request,"monitor/settings.html",context=context)
+    
+@login_required
+def changename(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.user.email
+        user = UserData.objects.get(email= email )
+        user.name = name
+        user.save()
+    
+    return redirect('settings')

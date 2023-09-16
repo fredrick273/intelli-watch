@@ -89,7 +89,7 @@
 
         // Sidebar Toggle 
 function reload(){
-    sleep(2000).then(() => {window.reload() });
+    sleep(2000).then(() => {location.href = '{% url "dashboard" %}' });
 }
 
 var sidebarOpen = false;

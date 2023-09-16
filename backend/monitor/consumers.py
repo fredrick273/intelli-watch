@@ -44,23 +44,3 @@ class data(WebsocketConsumer):
         except:
             self.send("error")
 
-
-
-# class execute(AsyncWebsocketConsumer):
-#     async def connect(self):
-#         self.sysid = self.scope['url_route']['kwargs']['id']
-#         await self.channel_layer.group_add(self.sysid, self.channel_name)
-#         await self.accept()
-
-#     async def disconnect(self, code):
-#         await self.channel_layer.group_discard(self.sysid, self.channel_name)
-
-#     async def receive(self, text_data=None, bytes_data=None):
-#         print("Received data:", text_data)  
-#         await self.channel_layer.group_send(
-#             self.sysid,
-#             {   
-#                 "type": "command",
-#                 "data": text_data,
-#             },
-#         )

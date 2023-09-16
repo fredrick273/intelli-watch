@@ -5,7 +5,28 @@
                     <main class="main-container">
                         <div class="charts-card">
                             <p class="chart-title">Account Settings</p>
-                            
+                                <h5>Change Name</h5>
+                                <form action="{% url 'changename' %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="text-area">
+                                        <input type="text" name="name" placeholder="Name" value="{{ username }}" required>
+                                        <span></span>
+                                        <label>New Username</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-outline-secondary">Submit</button>
+                                </form>
+
+                                <br>
+                                <br>
+
+
+                                <h5>Change Password</h5>
+                                <button onclick="redirect()" class="btn btn-outline-secondary">Click Here</button>
+
+
+                                <br>
+                                <br>
+                                            
                             <p class="chart-title">Notification Settings</p>
                             
                                     <form method="post">
@@ -42,4 +63,9 @@
                                 
                         </div>
                     </main>
+                <script>
+                    function redirect(){
+                        location.href = "{% url 'account_change_password' %}"
+                    }
+                </script>
         {% endblock %}

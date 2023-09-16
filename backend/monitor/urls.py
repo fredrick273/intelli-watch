@@ -18,5 +18,6 @@ urlpatterns = [
     path('showall/network/<int:id>',views.showallnetwork,name='all_network'),
     path('showall/installed/<int:id>',views.showallinstalled,name='all_installed'),
     
-    path('settings/',views.settings,name='settings')
+    path('settings/',views.settingsview,name='settings'),
+    path('changename/',views.changename,name='changename')
 ]   
