@@ -3,9 +3,43 @@
         {% block content %}
                     <!-- CARDS -->
                     <main class="main-container">
-                        <div class="main-title">
-                            <p class="font-weight-bold">Dashboard</p>
+                        <div class="charts-card">
+                            <p class="chart-title">Account Settings</p>
                             
+                            <p class="chart-title">Notification Settings</p>
+                            
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <table class="table table-bordered table-hover table-light table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>System Name</th>
+                                                    <th>Antivirus Notification</th>
+                                                    <th>Firewall Notification</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for system in systems %}
+                                                <tr>
+                                                    <td>{{ system.name }}</td>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" {% if system.antivirus_notification %}checked{% endif %}
+                                                               name="antivirus_{{ system.id }}">
+                                                        <label class="form-check-label"></label>
+                                                    </td>
+                                                    <td>
+                                                        <input class="form-check-input" type="checkbox" {% if system.firewall_notification %}checked{% endif %}
+                                                               name="firewall_{{ system.id }}">
+                                                        <label class="form-check-label"></label>
+                                                    </td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                        <button class="btn btn-outline-secondary" type="submit">Save</button>
+                                    </form>
+                                    
+                                
                         </div>
                     </main>
         {% endblock %}

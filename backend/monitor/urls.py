@@ -16,6 +16,7 @@ urlpatterns = [
 
     path('showall/process/<int:id>',views.showallprocesses,name='all_process'),
     path('showall/network/<int:id>',views.showallnetwork,name='all_network'),
-    path('showall/installed/<int:id>',views.showallinstalled,name='all_installed')
+    path('showall/installed/<int:id>',views.showallinstalled,name='all_installed'),
     
-]
+    path('settings/',views.settings,name='settings')
+]   

@@ -5,6 +5,8 @@ from users.models import UserData
 class System(models.Model):
     name = models.CharField(max_length=200)
     user = models.ForeignKey(UserData,on_delete=models.CASCADE)
+    antivirus_notification = models.BooleanField(default=False)
+    firewall_notification = models.BooleanField(default=False)
 
 class SystemDataInstance(models.Model):
     system = models.ForeignKey(System,on_delete=models.CASCADE)

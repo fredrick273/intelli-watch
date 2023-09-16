@@ -92,6 +92,7 @@ def dashboard(request):
         total_reports += len(SystemDataInstance.objects.filter(system=i))
     totalsys = len(systems)
     context = {
+        "useremail": request.user.email,
         "systems":systems,
         "total":totalsys,
         "total_reports":total_reports
@@ -138,74 +139,117 @@ def showhistory(request,id):
             'sys':system.name
         }
         return render(request,"monitor/history.html",context=context)
+    return redirect('dashboard')
 
 @login_required
 def showhistorydata(request,id):
     systemdata = SystemDataInstance.objects.get(id=id)
-    cpu_percent = systemdata.cpu_percent
-    ram_percent = systemdata.ram_percent
-    antivirus = systemdata.anti_virus_status
-    firewall = systemdata.firewall_virus_status
-    modified_files = json.loads(systemdata.modified_files)["files"]
-    runningprocess = json.loads(systemdata.running_process)["process"]
-    usb = json.loads(systemdata.usb_devices)["usb"]
-    network_connection = json.loads(systemdata.network_connection)["network"]
-    installed_softwares = json.loads(systemdata.installed_softwares)["installed"]
-    report_time = systemdata.reported_time
+    if systemdata.system.user == request.user:
+        cpu_percent = systemdata.cpu_percent
+        ram_percent = systemdata.ram_percent
+        antivirus = systemdata.anti_virus_status
+        firewall = systemdata.firewall_virus_status
+        modified_files = json.loads(systemdata.modified_files)["files"]
+        runningprocess = json.loads(systemdata.running_process)["process"]
+        usb = json.loads(systemdata.usb_devices)["usb"]
+        network_connection = json.loads(systemdata.network_connection)["network"]
+        installed_softwares = json.loads(systemdata.installed_softwares)["installed"]
+        report_time = systemdata.reported_time
 
-    allsystemdata = SystemDataInstance.objects.filter(system = systemdata.system).order_by("-reported_time")
-    index = list(allsystemdata).index(systemdata)
-    previous_sysdata = allsystemdata[index:index+10]
+        allsystemdata = SystemDataInstance.objects.filter(system = systemdata.system).order_by("-reported_time")
+        index = list(allsystemdata).index(systemdata)
+        previous_sysdata = allsystemdata[index:index+10]
 
-    cpu_data = json.dumps([i.cpu_percent for i in previous_sysdata])
-    memory_data = json.dumps([i.ram_percent for i in previous_sysdata])
+        cpu_data = json.dumps([i.cpu_percent for i in previous_sysdata])
+        memory_data = json.dumps([i.ram_percent for i in previous_sysdata])
 
-            
-    if (len(modified_files)==0):
-        modified_files = 0
+                
+        if (len(modified_files)==0):
+            modified_files = 0
 
-    if (len(usb)==0):
-        usb = 0
+        if (len(usb)==0):
+            usb = 0
 
 
-    context = {
-                "id":systemdata.id,
-                "cpu_percent":cpu_percent,
-                "ram_percent":ram_percent,
-                "antivirus":antivirus,
-                "firewall":firewall,
-                "modified_files":modified_files,
-                "running_processes":runningprocess[:10],
-                "usb_devices":usb,
-                "network_connections":network_connection[:10],
-                "installed_softwares":installed_softwares[:10],
-                "report_time":report_time,
-                "prev_cpu_data":cpu_data,
-                "prev_ram_data":memory_data,
-    }
-    return render(request,"monitor/monitor.html",context=context)
+        context = {
+                    "id":systemdata.id,
+                    "cpu_percent":cpu_percent,
+                    "ram_percent":ram_percent,
+                    "antivirus":antivirus,
+                    "firewall":firewall,
+                    "modified_files":modified_files,
+                    "running_processes":runningprocess[:10],
+                    "usb_devices":usb,
+                    "network_connections":network_connection[:10],
+                    "installed_softwares":installed_softwares[:10],
+                    "report_time":report_time,
+                    "prev_cpu_data":cpu_data,
+                    "prev_ram_data":memory_data,
+        }
+        return render(request,"monitor/monitor.html",context=context)
+    return redirect('dashboard')
 
+@login_required
 def showallprocesses(request,id):
     systemdata = SystemDataInstance.objects.get(id=id)
-    runningprocess = json.loads(systemdata.running_process)["process"]
-    context = {
-        'process':runningprocess
-    }
-    return render(request,"monitor/showallprocess.html",context=context)
+    if systemdata.system.user == request.user:
+        runningprocess = json.loads(systemdata.running_process)["process"]
+        context = {
+            'process':runningprocess
+        }
+        return render(request,"monitor/showallprocess.html",context=context)
+    return redirect('dashboard')
 
+@login_required
 def showallnetwork(request,id):
     systemdata = SystemDataInstance.objects.get(id=id)
-    network_connection = json.loads(systemdata.network_connection)["network"]
-    context = {
-        'network_connections':network_connection
-    }
-    return render(request,"monitor/showallnetwork.html",context=context)
+    if systemdata.system.user == request.user:
+        network_connection = json.loads(systemdata.network_connection)["network"]
+        context = {
+            'network_connections':network_connection
+        }
+        return render(request,"monitor/showallnetwork.html",context=context)
+    return redirect('dashboard')
 
+@login_required
 def showallinstalled(request,id):
     systemdata = SystemDataInstance.objects.get(id=id)
-    installed_softwares = json.loads(systemdata.installed_softwares)["installed"]
-    context = {
-        'installed_softwares':installed_softwares
-    }
-    print(context)
-    return render(request,"monitor/showallinstalled.html",context=context)
+    if systemdata.system.user == request.user:
+        installed_softwares = json.loads(systemdata.installed_softwares)["installed"]
+        context = {
+            'installed_softwares':installed_softwares
+        }
+        return render(request,"monitor/showallinstalled.html",context=context)
+    return redirect('dashboard')
+
+
+@login_required
+def settings(request):
+    if request.method == "POST":
+        systems = System.objects.filter(user=request.user)
+
+        for system in systems:
+            # Check if the checkbox is in the POST data
+            if f"antivirus_{system.id}" in request.POST:
+                system.antivirus_notification = True
+            else:
+                system.antivirus_notification = False
+            
+            if f"firewall_{system.id}" in request.POST:
+                system.firewall_notification = True
+            else:
+                system.firewall_notification = False
+            
+            system.save()
+        
+        systems = System.objects.filter(user=request.user)
+        context={
+            "systems":systems
+        }
+        return render(request,"monitor/settings.html",context=context)
+    else:
+        systems = System.objects.filter(user=request.user)
+        context={
+            "systems":systems
+        }
+        return render(request,"monitor/settings.html",context=context)
