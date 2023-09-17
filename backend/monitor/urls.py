@@ -19,5 +19,7 @@ urlpatterns = [
     path('showall/installed/<int:id>',views.showallinstalled,name='all_installed'),
     
     path('settings/',views.settingsview,name='settings'),
-    path('changename/',views.changename,name='changename')
+    path('changename/',views.changename,name='changename'),
+    path('changewebhook/',views.changewebhook,name='changewebhook')
+
 ]   

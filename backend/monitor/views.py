@@ -4,10 +4,11 @@ from django.http import JsonResponse,FileResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 from django.urls import reverse
-from .models import System,SystemDataInstance
+from .models import System,SystemDataInstance,Notifier
 from django.contrib.auth.decorators import login_required
 import os
 from users.models import UserData
+import datetime
 
 
 # @csrf_exempt
@@ -93,11 +94,18 @@ def dashboard(request):
     for i in systems:
         total_reports += len(SystemDataInstance.objects.filter(system=i))
     totalsys = len(systems)
+    total_alive = 0
+    start_time = datetime.datetime.now()
+    prev_time = start_time - datetime.timedelta(minutes=1)
+    for i in systems:
+        sysdata = SystemDataInstance.objects.filter(system=i).filter(reported_time__gt =prev_time)
+        total_alive = len(sysdata)
     context = {
         "useremail": request.user.email,
         "systems":systems,
         "total":totalsys,
-        "total_reports":total_reports
+        "total_reports":total_reports,
+        "total_alive":total_alive
     }
     return render(request,"monitor/dashboard.html",context=context)
 
@@ -253,9 +261,14 @@ def settingsview(request):
         return render(request,"monitor/settings.html",context=context)
     else:
         systems = System.objects.filter(user=request.user)
+        if Notifier.objects.filter(user = request.user).exists():
+            notifier = Notifier.objects.get(user = request.user)
+        else:
+            notifier = False
         context={
             "systems":systems,
-            "username": request.user.name
+            "username": request.user.name,
+            "notifier":notifier
         }
         return render(request,"monitor/settings.html",context=context)
     
@@ -269,3 +282,19 @@ def changename(request):
         user.save()
     
     return redirect('settings')
+
+
+@login_required
+def changewebhook(request):
+    if Notifier.objects.filter(user = request.user).exists():
+        notifier = Notifier.objects.get(user = request.user)
+    else:
+        notifier = Notifier(user =request.user)
+    
+    if request.method =="POST":
+        url = request.POST.get('url')
+        notifier.webhook = url
+        notifier.save()
+        return redirect('settings')
+    return redirect('dashboard')
+

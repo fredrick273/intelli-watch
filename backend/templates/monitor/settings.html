@@ -20,6 +20,21 @@
                                 <br>
 
 
+
+                                <h5>Notification Webhook</h5>
+                                <form action="{% url 'changewebhook' %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="text-area">
+                                        <input type="text" name="url" value="{{notifier.webhook}}" placeholder="Webhook Url"  required>
+                                        <span></span>
+                                        <label>Webhook</label>
+                                    </div>
+                                    <button type="submit" class="btn btn-outline-secondary">Submit</button>
+                                </form>
+
+                                <br>
+                                <br>
+                                
                                 <h5>Change Password</h5>
                                 <button onclick="redirect()" class="btn btn-outline-secondary">Click Here</button>
 

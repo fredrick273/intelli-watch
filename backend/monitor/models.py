@@ -7,6 +7,9 @@ class System(models.Model):
     user = models.ForeignKey(UserData,on_delete=models.CASCADE)
     antivirus_notification = models.BooleanField(default=False)
     firewall_notification = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return str(self.name)
 
 class SystemDataInstance(models.Model):
     system = models.ForeignKey(System,on_delete=models.CASCADE)
@@ -20,3 +23,7 @@ class SystemDataInstance(models.Model):
     modified_files = models.TextField()
     network_connection = models.TextField()
     installed_softwares = models.TextField(null=True)
+
+class Notifier(models.Model):
+    webhook = models.TextField()
+    user = models.ForeignKey(UserData,on_delete=models.CASCADE)
