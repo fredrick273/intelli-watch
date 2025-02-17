@@ -81,7 +81,7 @@ class FileChangeHandler(FileSystemEventHandler):
         self.modified_files.append(event.src_path)  # Append the modified file name to the list
 
 def get_recently_modified_files():
-    print("Running modified files")
+    print("Running modified files..")
     handler = FileChangeHandler()
     path_to_watch = "C:\\"
     file_observer = Observer()
